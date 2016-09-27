@@ -20,6 +20,7 @@ namespace cis237assignment2
         char[,] maze;
         int xStart;
         int yStart;
+        bool foundExit = false;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
@@ -40,8 +41,9 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
+
             //Calling the recursive maze traversal method
-            this.mazeTraversal(maze, xStart, yStart);
+            this.mazeTraversal(xStart, yStart);
         }
 
 
@@ -50,25 +52,33 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private void mazeTraversal(char[,] maze, int xStart, int yStart)
+        private void mazeTraversal(int xStart, int yStart)
         {
-            if (maze[xStart,yStart] == '.')
+            if (!foundExit)
             {
-                maze[xStart,yStart] = 'O';
+                if (maze[xStart, yStart] == '.')
+                {
+                    maze[xStart, yStart] = 'X';
+                    MazePrinter.PrintMaze(maze);
+
+                    if (xStart == maze.GetLength(1) - 1 || yStart == maze.GetLength(0) - 1 || xStart == 0 || yStart == 0)
+                    {
+                        foundExit = true;
+                    }
+                    else
+                    {
+                        mazeTraversal(xStart + 1, yStart);
+                        mazeTraversal(xStart, yStart + 1);
+                        mazeTraversal(xStart - 1, yStart);
+                        mazeTraversal(xStart, yStart - 1);
+                    }
+                    if (!foundExit)
+                    {
+                        maze[xStart, yStart] = 'O';
+                        MazePrinter.PrintMaze(maze);
+                    }
+                }
             }
-            else if(maze[xStart,yStart] == 'O')
-            {
-                maze[xStart,yStart] = 'X';
-            }
-            else if(maze[xStart, yStart] == '#' || maze[xStart, yStart] == 'X')
-            {
-                return;
-            }
-            MazePrinter.PrintMaze(maze);
-            mazeTraversal(maze, xStart + 1, yStart);
-            mazeTraversal(maze, xStart, yStart - 1);
-            mazeTraversal(maze, xStart - 1, yStart);
-            mazeTraversal(maze, xStart, yStart - 1);
         }
     }
 }
