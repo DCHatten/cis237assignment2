@@ -26,8 +26,7 @@ namespace cis237assignment2
         /// </summary>
         public MazeSolver()
         {}
-
-
+        
         /// <summary>
         /// This is the public method that will allow someone to use this class to solve the maze.
         /// Feel free to change the return type, or add more parameters if you like, but it can be done
@@ -41,8 +40,8 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
-
-            //Do work needed to use mazeTraversal recursive call and solve the maze.
+            //Calling the recursive maze traversal method
+            this.mazeTraversal(maze, xStart, yStart);
         }
 
 
@@ -51,9 +50,25 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private void mazeTraversal()
+        private void mazeTraversal(char[,] maze, int xStart, int yStart)
         {
-            //Implement maze traversal recursive call
+            if (maze[xStart,yStart] == '.')
+            {
+                maze[xStart,yStart] = 'O';
+            }
+            else if(maze[xStart,yStart] == 'O')
+            {
+                maze[xStart,yStart] = 'X';
+            }
+            else if(maze[xStart, yStart] == '#' || maze[xStart, yStart] == 'X')
+            {
+                return;
+            }
+            MazePrinter.PrintMaze(maze);
+            mazeTraversal(maze, xStart + 1, yStart);
+            mazeTraversal(maze, xStart, yStart - 1);
+            mazeTraversal(maze, xStart - 1, yStart);
+            mazeTraversal(maze, xStart, yStart - 1);
         }
     }
 }
