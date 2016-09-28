@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// David Hatten
+/// </summary>
 namespace cis237assignment2
 {
     /// <summary>
@@ -21,13 +23,11 @@ namespace cis237assignment2
         int xStart;
         int yStart;
         bool foundExit = false;
-
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
         /// </summary>
         public MazeSolver()
         {}
-        
         /// <summary>
         /// This is the public method that will allow someone to use this class to solve the maze.
         /// Feel free to change the return type, or add more parameters if you like, but it can be done
@@ -45,12 +45,10 @@ namespace cis237assignment2
             //Calling the recursive maze traversal method
             this.mazeTraversal(xStart, yStart);
         }
-
-
         /// <summary>
-        /// This should be the recursive method that gets called to solve the maze.
-        /// Feel free to change the return type if you like, or pass in parameters that you might need.
-        /// This is only a very small starting point.
+        /// This method takes in start positions for the maze, then makes a recursive call
+        /// to step through the possible moves in the maze, backtracks as necessary, and
+        /// check for an exit
         /// </summary>
         private void mazeTraversal(int xStart, int yStart)
         {

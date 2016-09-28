@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// David Hatten
+/// </summary>
 namespace cis237assignment2
 {
     class Program
@@ -59,8 +61,10 @@ namespace cis237assignment2
             //Solve the transposed maze.
             mazeSolver.SolveMaze(maze2, X_START, Y_START);
 
-        }
+            //Pause the program before closing to view the final result
+            Pause();
 
+        }
         /// <summary>
         /// This method will take in a 2 dimensional char array and return
         /// a char array maze that is flipped along the diagonal, or in mathematical
@@ -79,8 +83,16 @@ namespace cis237assignment2
         /// <returns>transposedMaze</returns>
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
-            //Write code her to create a transposed maze.
+            
             return new char[1, 1];
+        }
+        /// <summary>
+        /// Method to pause the program prior to exit so the user can review the solution to the maze(s)
+        /// </summary>
+        static void Pause()
+        {
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadLine();
         }
     }
 }
