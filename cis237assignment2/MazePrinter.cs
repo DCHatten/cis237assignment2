@@ -19,6 +19,7 @@ namespace cis237assignment2
         /// <param name="maze"></param>
         public static void PrintMaze(char[,] maze)
         {
+            //Console.Clear();
             for (int x = 0; x < maze.GetLength(0); x++)
             {
                 for (int y = 0; y < maze.GetLength(1); y++)

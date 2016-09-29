@@ -41,6 +41,7 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
+            this.foundExit = false;
 
             //Calling the recursive maze traversal method
             this.mazeTraversal(xStart, yStart);
