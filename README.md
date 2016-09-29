@@ -44,7 +44,7 @@ Don't forget that you must have a base case for your recursive method or you wil
 
 ## Outside Resources Used
 
-None
+Assistance with recursion and changing conosle colors from Jeff Martin
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
