@@ -53,16 +53,8 @@ namespace cis237assignment2
             //Create the second maze by transposing the first maze
             char[,] maze2 = transposeMaze(maze1);
 
-            /// <summary>
-            /// Tell the instance to solve the first maze with the passed maze, and start coordinates.
-            /// </summary>
-            mazeSolver.SolveMaze(maze1, X_START, Y_START);
-
-            //Solve the transposed maze.
-            mazeSolver.SolveMaze(maze2, X_START, Y_START);
-
-            //Pause the program before closing to view the final result
-            Pause();
+            //Call the menu method to find out which maze to solve
+            Menu(maze1, maze2, X_START, Y_START, mazeSolver);
 
         }
         /// <summary>
@@ -83,16 +75,62 @@ namespace cis237assignment2
         /// <returns>transposedMaze</returns>
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
-            
-            return new char[1, 1];
+            char[,] maze2 = new char[mazeToTranspose.GetLength(1),mazeToTranspose.GetLength(0)];
+            for (int y = 0; y < mazeToTranspose.GetLength(1); y++)
+            {
+                for (int x = 0; x < mazeToTranspose.GetLength(0); x++)
+                {
+                    maze2[y, x] = mazeToTranspose[x, y];
+                }
+            }
+                    return maze2;
         }
         /// <summary>
-        /// Method to pause the program prior to exit so the user can review the solution to the maze(s)
+        /// Method to print a menu for the user to choose 1 of the built in mazes to solve, showing the steps used.
+        /// Is also called recursively to keep the program open until the user chooses to exit.
+        /// </summary>
+        /// <param name="maze1">The Default maze</param>
+        /// <param name="maze2">The transposed maze</param>
+        /// <param name="X_START">The hard coded initial x coordinate</param>
+        /// <param name="Y_START">The hard coded initial y coordinate</param>
+        /// <param name="mazeSolver">The instance of the MazeSolver method from the MazeSolver class</param>
+        static void Menu(char[,] maze1, char[,] maze2, int X_START, int Y_START, MazeSolver mazeSolver)
+        {
+            Console.WriteLine("Choose which maze you would like to solve:");
+            Console.WriteLine("1. Standard Maze");
+            Console.WriteLine("2. Transposed Maze");
+            Console.WriteLine("3. Exit");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    //Tell the instance to solve the first maze with the passed maze, and start coordinates.
+                    mazeSolver.SolveMaze(maze1, X_START, Y_START);
+                    break;
+                case "2":
+                    //Solve the transposed maze.
+                    mazeSolver.SolveMaze(maze2, X_START, Y_START);
+                    break;
+                case "3":
+                    //Call the Pause method to display an exit prompt
+                    Pause();
+                    break;
+                default:
+                    Console.WriteLine("Error, you must select from the available options");
+                    Console.Clear();
+                    Menu(maze1,maze2,X_START,Y_START,mazeSolver);
+                    break;
+            }
+            Menu(maze1, maze2, X_START, Y_START, mazeSolver);
+        }
+        /// <summary>
+        /// Method to pause the program prior to exit so the user can review the steps on screen
         /// </summary>
         static void Pause()
         {
             Console.WriteLine("Press any key to exit...");
             Console.ReadLine();
+            Environment.Exit(0);
         }
     }
 }

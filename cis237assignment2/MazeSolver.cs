@@ -44,6 +44,10 @@ namespace cis237assignment2
 
             //Calling the recursive maze traversal method
             this.mazeTraversal(xStart, yStart);
+
+            //Pause output for review prior to solving any additional mazes
+            Console.WriteLine("Press any key to Continue...");
+            Console.ReadLine();
         }
         /// <summary>
         /// This method takes in start positions for the maze, then makes a recursive call
